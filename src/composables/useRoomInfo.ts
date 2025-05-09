@@ -1,8 +1,8 @@
 import type { Room } from 'livekit-client'
 import type { Ref } from 'vue'
 import { roomInfoObserver } from '@livekit/components-core'
-import { inject, onUnmounted, ref } from 'vue'
-import { LIVEKIT_ROOM_SYMBOL } from '../utils/injectionKeys'
+import { onUnmounted, ref } from 'vue'
+import { useEnsureRoom } from './useEnsureRoom'
 
 /**
  * The `useRoomInfo` composable returns the name and metadata of the given `Room`.
@@ -21,11 +21,7 @@ export interface UseRoomInfoOptions {
 
 /** @public */
 export function useRoomInfo(options: UseRoomInfoOptions = {}): Ref<{ name: string, metadata: string | undefined }> {
-  const roomInstance = options.room ?? inject(LIVEKIT_ROOM_SYMBOL)?.value
-
-  if (!roomInstance) {
-    throw new Error('No LiveKit Room found. Make sure you are using this composable within a LiveKitRoom component or provide a room instance.')
-  }
+  const roomInstance = useEnsureRoom(options.room)
 
   const roomInfo = ref({
     name: roomInstance.name,
