@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ConnectionState, LiveKitRoom } from 'vue-livekit-components'
+import { ConnectionState, LiveKitRoom, RoomName } from 'vue-livekit-components'
 
 const serverUrl = ref('')
 const roomToken = ref('')
@@ -13,8 +13,16 @@ const roomToken = ref('')
 
     <LiveKitRoom data-lk-theme="default" :server-url="serverUrl" :token="roomToken">
       <ConnectionState v-slot="{ connectionStatus }">
-        status: {{ connectionStatus }}
+        Status: {{ connectionStatus }}
       </ConnectionState>
+
+      <br>
+
+      <RoomName>
+        <template #before>
+          Room name:
+        </template>
+      </RoomName>
     </LiveKitRoom>
   </div>
 </template>
