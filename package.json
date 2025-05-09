@@ -1,0 +1,43 @@
+{
+  "name": "vue-livekit-components",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.10.0",
+  "description": "Vue LiveKit components library",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/vue-livekit-components.es.js",
+      "require": "./dist/vue-livekit-components.umd.js"
+    }
+  },
+  "main": "./dist/vue-livekit-components.umd.js",
+  "module": "./dist/vue-livekit-components.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "playground": "pnpm --filter playground dev",
+    "dev": "pnpm run playground",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "dependencies": {
+    "@livekit/components-core": "^0.12.4",
+    "livekit-client": "^2.11.4"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.12.0",
+    "@vitejs/plugin-vue": "^5.2.2",
+    "eslint": "^9.26.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.1",
+    "vite-plugin-dts": "^4.5.3",
+    "vue": "^3.5.13"
+  }
+}
